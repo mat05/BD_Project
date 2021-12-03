@@ -40,8 +40,9 @@ create table LesTickets (
     nomSpec varchar(50) not null,
     typeReduc decimal (6,2),
     constraint PK_TK primary key(noTicket),
-    constraint  CK_TK_ check (noTicket > 0 ),
-    constraint CK_TK_TR check ( typeReduc >= 0 )
+    constraint CK_TK_ check (noTicket > 0 ),
+    constraint CK_TK_TR check ( typeReduc >= 0 ),
+    constraint CK_TK_DT check (dateAchat < dateRep)
 
 );
 create table LesReduction (
@@ -56,25 +57,37 @@ create table LesReduction (
 
 create table LesPlaces (
     noPlace integer,
-    noRang integer,
-    noZone integer not null,
-    constraint PK_LP primary key (noZone, noPlace, noRang),
+    noRang  integer,
+    noZone  integer not null,
+    constraint PK_LP primary key (noPlace, noRang),
     constraint CK_PL_NP check (noPlace > 0),
     constraint CK_PL_NR check (noRang > 0)
     );
 
 create table LesVentes (
-    noAchat   integer not null,
+    noDoss    integer not null,
     noTicket  integer not null,
     prixTotal decimal(6, 2),
-    constraint PK_LV primary key (noAchat),
+    constraint PK_LV primary key (noDoss),
     constraint FK_LV foreign key (noTicket) references LesTickets(noTicket),
-    constraint CK_LV check ( prixTotal >= 0 )
+    constraint CK_LV_NA check ( noDoss > 0 ),
+    constraint CK_LV_PT check ( prixTotal >= 0)
 );
 
--- TODO 1.4 : Créer une vue LesRepresentations ajoutant le nombre de places disponible et d'autres possibles attributs calculés.
+
+create view LesRepresentations
+AS
+    SELECT nomSpec , dateRep , count(*) as nbPlaceDispo
+    from LesRepresentations join LesSpectacle on noSpec natural left outer join
+        (select noSpec, noRang, noPlace, dateRep from LesRepresentations
+          cross JOIN LesPlaces join LesSpectacle on noSpec natural join LesZones
+            where (noSpec , noRang , noPlace , dateRep) not in
+                  (select noSpec, noRang,noPlace , dateRep FROM LesTickets ))
+    GROUP BY nomSpec, dateRep;
 
 
+create view Montant_Total
+AS
 
--- TODO 1.5 : Créer une vue  avec le noDos et le montant total correspondant.
+
 -- TODO 3.3 : Ajouter les éléments nécessaires pour créer le trigger (attention, syntaxe SQLite différent qu'Oracl
