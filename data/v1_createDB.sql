@@ -5,15 +5,15 @@ create table LesRepresentations (
     prixRep decimal (6,2) not null,
     constraint PK_REP primary key (nomSpec, dateRep),
     constraint CK_REP_PR check (prixRep >= 0),
-    constraint CK_REP_PR check (promoRep >= 0 and promoRep <=1)
+    constraint CK_REP_PR check (promoRep >= 0 and promoRep <= 1)
 );
 
 
-create table LesSpectacle
+create table LesSpectacles
 (   noSpec integer not null,
     nomSpec varchar(50) not null,
     prixBaseSpec decimal(6, 2) not null,
-    constraint PK_SP primary key  (noSpec),
+    constraint PK_SP primary key (noSpec),
     constraint CK_SP check (prixBaseSpec >= 0)
 );
 
@@ -45,15 +45,15 @@ create table LesTickets (
     constraint CK_TK_DT check (dateAchat < dateRep)
 
 );
-create table LesReduction (
+
+create table LesReductions (
     type varchar(50) not null ,
     typeReduc integer not null ,
     tauxReduc decimal(6,2),
     constraint PK_RD primary key (type),
     constraint CK_TR check ( tauxReduc >= 0 ),
     constraint CK_RD check (type in  ('sans reduction','adherent','etudiant', 'scolaire' , 'militaire', 'seniors' ))
-             );
-
+);
 
 create table LesPlaces (
     noPlace integer,
@@ -86,8 +86,6 @@ AS
     GROUP BY nomSpec, dateRep;
 
 
-create view Montant_Total
-AS
 
 
 -- TODO 3.3 : Ajouter les éléments nécessaires pour créer le trigger (attention, syntaxe SQLite différent qu'Oracl

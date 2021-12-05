@@ -770,7 +770,7 @@
      <x>0</x>
      <y>0</y>
      <width>896</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFiles">
@@ -788,6 +788,24 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_15</tabstop>
+  <tabstop>pushButton_6</tabstop>
+  <tabstop>pushButton_12</tabstop>
+  <tabstop>pushButton_9</tabstop>
+  <tabstop>pushButton_16</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>pushButton_5</tabstop>
+  <tabstop>pushButton_7</tabstop>
+  <tabstop>pushButton_8</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_10</tabstop>
+  <tabstop>pushButton_11</tabstop>
+  <tabstop>pushButton_13</tabstop>
+  <tabstop>pushButton_14</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -813,8 +831,8 @@
    <slot>createDBV0()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>313</x>
-     <y>235</y>
+     <x>378</x>
+     <y>133</y>
     </hint>
     <hint type="destinationlabel">
      <x>388</x>
@@ -829,8 +847,8 @@
    <slot>insertDBV0()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>504</x>
-     <y>235</y>
+     <x>621</x>
+     <y>133</y>
     </hint>
     <hint type="destinationlabel">
      <x>516</x>
@@ -845,12 +863,12 @@
    <slot>deleteDBV0()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>164</x>
-     <y>235</y>
+     <x>171</x>
+     <y>126</y>
     </hint>
     <hint type="destinationlabel">
-     <x>201</x>
-     <y>105</y>
+     <x>118</x>
+     <y>74</y>
     </hint>
    </hints>
   </connection>
@@ -861,8 +879,8 @@
    <slot>openDataV0()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>667</x>
-     <y>235</y>
+     <x>819</x>
+     <y>133</y>
     </hint>
     <hint type="destinationlabel">
      <x>753</x>
@@ -877,12 +895,12 @@
    <slot>open_fct_fournie_1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>473</x>
-     <y>343</y>
+     <x>603</x>
+     <y>296</y>
     </hint>
     <hint type="destinationlabel">
-     <x>559</x>
-     <y>306</y>
+     <x>606</x>
+     <y>320</y>
     </hint>
    </hints>
   </connection>
@@ -893,12 +911,12 @@
    <slot>open_fct_fournie_2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>449</x>
-     <y>369</y>
+     <x>564</x>
+     <y>333</y>
     </hint>
     <hint type="destinationlabel">
-     <x>553</x>
-     <y>338</y>
+     <x>216</x>
+     <y>321</y>
     </hint>
    </hints>
   </connection>
@@ -913,8 +931,8 @@
      <y>435</y>
     </hint>
     <hint type="destinationlabel">
-     <x>563</x>
-     <y>438</y>
+     <x>170</x>
+     <y>441</y>
     </hint>
    </hints>
   </connection>
@@ -925,12 +943,12 @@
    <slot>open_fct_comp_1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>461</x>
-     <y>422</y>
+     <x>585</x>
+     <y>412</y>
     </hint>
     <hint type="destinationlabel">
-     <x>565</x>
-     <y>410</y>
+     <x>174</x>
+     <y>395</y>
     </hint>
    </hints>
   </connection>
@@ -941,12 +959,12 @@
    <slot>deleteDBV1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>148</x>
-     <y>274</y>
+     <x>202</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
-     <x>213</x>
-     <y>265</y>
+     <x>107</x>
+     <y>272</y>
     </hint>
    </hints>
   </connection>
@@ -957,8 +975,8 @@
    <slot>createDBV1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>299</x>
-     <y>273</y>
+     <x>378</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
      <x>344</x>
@@ -973,8 +991,8 @@
    <slot>insertDBV1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>492</x>
-     <y>274</y>
+     <x>621</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
      <x>541</x>
@@ -989,12 +1007,44 @@
    <slot>openDataV1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>653</x>
-     <y>276</y>
+     <x>819</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
      <x>703</x>
      <y>272</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_10</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_fct_Rep_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>441</x>
+     <y>582</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>105</x>
+     <y>585</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_11</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_fct_Rep_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>239</x>
+     <y>620</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>101</x>
+     <y>632</y>
     </hint>
    </hints>
   </connection>
@@ -1015,5 +1065,7 @@
   <slot>deleteDBV1()</slot>
   <slot>openDataV1()</slot>
   <slot>slot1()</slot>
+  <slot>open_fct_Rep_1()</slot>
+  <slot>open_fct_Rep_2()</slot>
  </slots>
 </ui>
