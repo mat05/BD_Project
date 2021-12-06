@@ -29,7 +29,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabRepresentations">
       <attribute name="title">
@@ -60,7 +60,7 @@
           <enum>Qt::LeftToRight</enum>
          </property>
          <property name="columnCount">
-          <number>6</number>
+          <number>5</number>
          </property>
          <attribute name="horizontalHeaderCascadingSectionResizes">
           <bool>true</bool>
@@ -82,11 +82,6 @@
          </attribute>
          <column>
           <property name="text">
-           <string>noSpec</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
            <string>nomSpec</string>
           </property>
          </column>
@@ -102,12 +97,12 @@
          </column>
          <column>
           <property name="text">
-           <string>prixBaseSpec</string>
+           <string>prixRep</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>prixRep</string>
+           <string>nbPlacesDispo</string>
           </property>
          </column>
         </widget>
@@ -161,6 +156,61 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_Spectacles">
+      <attribute name="title">
+       <string>LesSpectacles</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tableSpectacles">
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>200</number>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>50</number>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>noSpec</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>nomSpec</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>prixBaseSpec</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_spectacles">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tabPlaces">
       <attribute name="title">
        <string>LesPlaces</string>
@@ -193,16 +243,6 @@
          <column>
           <property name="text">
            <string>noZone</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>typeZone</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>tauxZone</string>
           </property>
          </column>
         </widget>
@@ -251,6 +291,220 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabTickets">
+      <attribute name="title">
+       <string>LesTickets</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tableTickets">
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>noTicket</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>dateAchat</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>dateRep</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>noPlace</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>noRang</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>nomSpec</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>typeReduc</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_tickets">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabZones">
+      <attribute name="title">
+       <string>LesZones</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <item>
+        <widget class="QTableWidget" name="tableZones">
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>noZone</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>catZone</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_zones">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabCategories">
+      <attribute name="title">
+       <string>LesCatégories</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QTableWidget" name="tableCategories">
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustIgnored</enum>
+         </property>
+         <property name="tabKeyNavigation">
+          <bool>true</bool>
+         </property>
+         <property name="showDropIndicator" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>false</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="textElideMode">
+          <enum>Qt::ElideRight</enum>
+         </property>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>catZone</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>tauxZone</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_categories">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabReductions">
+      <attribute name="title">
+       <string>LesRéductions</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QTableWidget" name="tableReduction">
+         <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>noType</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>typeReduc</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>tauxReduc</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_reductions">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabVentes">
+      <attribute name="title">
+       <string>LesVentes</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QTableWidget" name="tableVentes"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_ventes">
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>

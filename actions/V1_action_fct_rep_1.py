@@ -21,8 +21,7 @@ class AppFctRep1(QDialog):
         display.refreshLabel(self.ui.label_fct_rep_1, "")
         try:
             cursor = self.data.cursor()
-            # TODO 2.1 Relation à modifier par une vue (à créé)
-            result = cursor.execute("SELECT nomSpec,dateRep,prixRep FROM V0_LesRepresentations ")
+            result = cursor.execute("SELECT noSpec, nomSpec, dateRep, promoRep, prixRep FROM P2_LesRepresentations")
         except Exception as e:
             self.ui.table_fct_rep_1.setRowCount(0)
             display.refreshLabel(self.ui.label_rep_1, "Impossible d'afficher les résultats : " + repr(e))

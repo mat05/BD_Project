@@ -2,7 +2,7 @@
 
 INSERT INTO LesPlaces (noPlace, noRang, noZone) SELECT noPlace,noRang,noZone FROM v0_LesPlaces ;
 
-INSERT INTO LesSpectacle (noSpec, nomSpec, prixBaseSpec) VALUES (1,'How to be a parisian',25);
+INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (1,'How to be a parisian',25);
 
 
 

@@ -13,6 +13,7 @@ from actions.v0_action_fct_comp_1_partie_1 import AppFctComp1Partie1
 from actions.v0_action_fct_comp_2_partie_1 import AppFctComp2Partie1
 from actions.V1_action_fct_rep_1 import AppFctRep1
 from actions.V1_action_fct_rep_2 import AppFctRep2
+from actions.V1_action_fct_gerer_rep_3 import AppFctGererRep3
 # Classe utilisée pour lancer la fenêtre principale de l'application et définir ses actions
 class AppWindow(QMainWindow):
 
@@ -30,6 +31,7 @@ class AppWindow(QMainWindow):
     fct_comp_2_dialog = None
     fct_rep_1_dialog = None
     fct_rep_2_dialog = None
+    fct_gerer_rep_3_dialog = None
 
     # Constructeur
     def __init__(self):
@@ -223,6 +225,13 @@ class AppWindow(QMainWindow):
         self.fct_rep_2_dialog.show()
         self.changedValue.connect(self.fct_rep_2_dialog.refreshResult)
 
+    def open_fct_gerer_Rep_2(self):
+        if self.fct_gerer_rep_3_dialog is not None:
+            self.fct_gerer_rep_3_dialog.close()
+        self.fct_gerer_rep_3_dialog = AppFctGererRep3(self.data)
+        self.fct_gerer_rep_3_dialog.show()
+        self.changedValue.connect(self.fct_gerer_rep_3_dialog.refreshResult)
+
     ####################################################################################################################
     # Fonctions liées aux évènements (signal/slot/event)
     ####################################################################################################################
@@ -253,6 +262,19 @@ class AppWindow(QMainWindow):
 
         # On laisse l'évènement de clôture se terminer normalement
         event.accept()
+
+
+    # TODO 1.1 : fichier ui et python à modifier -> les catégories sont proposer dans un deroulant (coder en dur)
+    # TODO 1.2 : fichier ui  et python à modifier -> les catégories sont proposer dans un deroulant (a partir de la BD)
+    # TODO 1.3 : Remplacer la table les ventes par une vue + modifier fichier ui
+    # TODO 3.1 : Gérer les representation (ui OK) + fichier python associé (puis associer les boutons au foonction py)
+    # TODO 3.2 : Gérer les reservation (ui OK) + fichier python associé (puis associer les boutons au foonction py)
+    # TODO 3.3 : Faire les triggers
+
+
+
+
+
 
 # Lancement de la fenêtre principale
 app = QApplication(sys.argv)
