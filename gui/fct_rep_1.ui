@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
+    <width>568</width>
     <height>309</height>
    </rect>
   </property>
@@ -16,6 +16,11 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTableWidget" name="table_fct_rep_1">
+     <column>
+      <property name="text">
+       <string>noSpec</string>
+      </property>
+     </column>
      <column>
       <property name="text">
        <string>nomSpec</string>

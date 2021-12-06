@@ -18,6 +18,11 @@
     <widget class="QTableWidget" name="table_fct_rep_2">
      <column>
       <property name="text">
+       <string>noSpec</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>nomSpec</string>
       </property>
      </column>
