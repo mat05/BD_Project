@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/data/v1_createDB.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/data/v1_deleteDB.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/data/v1_insertDB.sql" dialect="SQLite" />
+    <file url="PROJECT" dialect="Oracle" />
+  </component>
+  <component name="SqlResolveMappings">
+    <file url="file://$PROJECT_DIR$/data/v1_createDB.sql" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@qname&quot;:&quot;6418988a-683c-4f96-8307-89fb6dc6a1ba&quot;    },    &quot;name&quot;:{     &quot;@qname&quot;:&quot;680004a6-63e6-4edf-9c6a-865c96af8fc3&quot;    }   }  } }}" />
+    <file url="file://$PROJECT_DIR$/data/v1_insertDB.sql" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@qname&quot;:&quot;6418988a-683c-4f96-8307-89fb6dc6a1ba&quot;    },    &quot;name&quot;:{     &quot;@qname&quot;:&quot;680004a6-63e6-4edf-9c6a-865c96af8fc3&quot;    }   }  } }}" />
+    <file url="PROJECT" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@qname&quot;:&quot;6418988a-683c-4f96-8307-89fb6dc6a1ba&quot;    },    &quot;group&quot;:{     &quot;@kind&quot;:&quot;schema&quot;,     &quot;node&quot;:{      &quot;@negative&quot;:&quot;1&quot;     }    }   }  } }}" />
+  </component>
+</project>
