@@ -107,7 +107,7 @@ AS
 CREATE VIEW Montant_total
 AS
     SELECT noDos, sum(prixRep)
-    FROM Lesventes natural join P1_LesRepresentations natural Join LesTickets
+    FROM Lesventes natural join P2_LesRepresentations natural Join LesTickets
         group by noDos;
 
 

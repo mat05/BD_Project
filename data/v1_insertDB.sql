@@ -4,7 +4,8 @@ INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) SELECT noSpec,nomSpec,
 
 INSERT INTO LesPlaces (noPlace, noRang, noZone) SELECT noPlace,noRang,noZone FROM v0_LesPlaces ;
 
-/*INSERT INTO LesCategories(catZone, tauxZone) VALUES ('orchestre',1);
+/*
+INSERT INTO LesCategories(catZone, tauxZone) VALUES ('orchestre',1);
 INSERT INTO LesCategories(catZone, tauxZone) VALUES ('orchestre',1);
 INSERT INTO LesCategories(catZone, tauxZone) VALUES ('orchestre',1);
 INSERT INTO LesCategories(catZone, tauxZone) VALUES ('orchestre',1);
@@ -66,6 +67,4 @@ INSERT INTO LesSpectacles(noSpec, nomSpec, prixBaseSpec) VALUES (47,'Tout sur Gr
 INSERT INTO LesSpectacles(noSpec, nomSpec, prixBaseSpec) VALUES (48,'Tout sur Grenoble',27);
 
 
-INSERT INTO LesTickets(no)
-INSERT INTO LesTickets(noTicket, dateAchat, dateRep, noPlace, nomSpec, typeReduc)
 INSERT INTO LesTickets(noTicket, dateAchat, dateRep, noPlace, noRang, noSpec,typeReduc) VALUES (1,'20/12/2019 14:00', null, 1, null,1);
