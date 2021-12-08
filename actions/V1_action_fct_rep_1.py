@@ -18,10 +18,14 @@ class AppFctRep1(QDialog):
     # Fonction de mise à jour de l'affichage
     @pyqtSlot()
     def refreshResult(self):
+
+        print("OK1\n")
         display.refreshLabel(self.ui.label_fct_rep_1, "")
         try:
             cursor = self.data.cursor()
+            print("OK2\n")
             result = cursor.execute("SELECT noSpec, nomSpec, dateRep, promoRep, prixRep FROM P2_LesRepresentations")
+            print("OK3\n")
         except Exception as e:
             self.ui.table_fct_rep_1.setRowCount(0)
             display.refreshLabel(self.ui.label_rep_1, "Impossible d'afficher les résultats : " + repr(e))

@@ -225,13 +225,19 @@ class AppWindow(QMainWindow):
         self.fct_rep_2_dialog.show()
         self.changedValue.connect(self.fct_rep_2_dialog.refreshResult)
 
-    def open_fct_gerer_Rep_2(self):
+    def open_fct_gerer_Rep_3(self):
         if self.fct_gerer_rep_3_dialog is not None:
             self.fct_gerer_rep_3_dialog.close()
         self.fct_gerer_rep_3_dialog = AppFctGererRep3(self.data)
         self.fct_gerer_rep_3_dialog.show()
         self.changedValue.connect(self.fct_gerer_rep_3_dialog.refreshResult)
 
+    def open_fct_gerer_Res_3(self):
+        if self.fct_gerer_rep_3_dialog is not None:
+            self.fct_gerer_rep_3_dialog.close()
+        self.fct_gerer_rep_3_dialog = AppFctGererRep3(self.data)
+        self.fct_gerer_rep_3_dialog.show()
+        self.changedValue.connect(self.fct_gerer_rep_3_dialog.refreshResult)
     ####################################################################################################################
     # Fonctions liées aux évènements (signal/slot/event)
     ####################################################################################################################

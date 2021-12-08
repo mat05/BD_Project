@@ -21,5 +21,12 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="V1_theatre" uuid="f43b4053-5858-44e9-bb95-441f8c9af6b1">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/data/v0_createDB.sql</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

@@ -19,12 +19,7 @@ class AppFctComp1Partie1(QDialog):
     def refreshResult(self):
         # TODO 1.1 : fonction à modifier pour remplacer la zone de saisie par une liste de valeurs prédéfinies dans l'interface une fois le fichier ui correspondant mis à jour
         display.refreshLabel(self.ui.label_fct_comp_1, "")
-        #if not self.ui.editText_fct_comp_1.text().strip():
-        print("ok\n")
-        print(self.ui.comboBox_fct_comp_1.currentText())
         if not self.ui.comboBox_fct_comp_1.currentText():
-
-            print("ok\n")
             self.ui.table_fct_comp_1.setRowCount(0)
             display.refreshLabel(self.ui.label_fct_comp_1, "Veuillez choisir une catégorie")
         else:
