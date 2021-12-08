@@ -264,7 +264,7 @@ class AppWindow(QMainWindow):
         event.accept()
 
 
-    # TODO 1.1 : fichier ui et python à modifier -> les catégories sont proposer dans un deroulant (coder en dur)
+    # (OK) TODO 1.1 : fichier ui et python à modifier -> les catégories sont proposer dans un deroulant (coder en dur)
     # TODO 1.2 : fichier ui  et python à modifier -> les catégories sont proposer dans un deroulant (a partir de la BD)
     # TODO 1.3 : Remplacer la table les ventes par une vue + modifier fichier ui
     # TODO 3.1 : Gérer les representation (ui OK) + fichier python associé (puis associer les boutons au foonction py)

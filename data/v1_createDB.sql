@@ -6,7 +6,7 @@ create table LesSpectacles
     constraint CK_SP check (prixBaseSpec >= 0)
 );
 
--- prix rep est calculer dasn la vue
+-- prix rep est calculer dans la vue
 create table LesRepresentations (
     noSpec integer not null,
     dateRep date not null,
@@ -21,13 +21,13 @@ create table LesCategories (
     tauxZone decimal (4,2) not null,
     constraint PK_CAT primary key (catZone),
     constraint CK_CAT_TZ check (tauxZone >= 0),
-    constraint CK_CAT_CZ check (catZone in ('orchestre', 'balcon', 'poulailler'))
+    constraint CK_CAT_CZ check (catZone in ('orchestre', 'balcon', 'poulailler', 'one_man_show'))
 );
 
 create table LesZones (
     noZone integer not null,
     catZone varchar (50) not null,
-    constraint PK_ZN primary key (noZone),
+    --constraint PK_ZN primary key (noZone),
     constraint CK_ZN check (noZone > 0),
     constraint FK_CT foreign key (catZone) references  LesCategories(catZone)
     );
@@ -43,6 +43,7 @@ create table LesReductions (
 
 create table LesTickets (
     noTicket integer not null,
+    noDos integer,
     dateAchat date not null,
     dateRep date not null ,
     noPlace integer not null,
@@ -59,6 +60,7 @@ create table LesPlaces (
     noPlace integer,
     noRang  integer,
     noZone  integer not null,
+    catZone
     constraint PK_LP primary key (noPlace, noRang),
     constraint CK_PL_NP check (noPlace > 0),
     constraint CK_PL_NR check (noRang > 0)
@@ -68,7 +70,8 @@ create table Lesventes (
     noDos integer,
     nomSpec varchar(50) not null,
     dateRep date not null,
-    constraint PK_LP primary key (noDos)
+    constraint PK_LP primary key (noDos),
+    constraint CK_LV check (noDos > 0)
     );
 
 create view P1_LesRepresentations
@@ -98,6 +101,14 @@ AS
     SELECT noSpec,nomSpec,dateRep, nbPlacesReserver
     FROM LesReservations join LesSpectacles using (noSPec)
     GROUP BY noSpec, dateRep;
+
+-- montant total de chaque vente
+
+CREATE VIEW Montant_total
+AS
+    SELECT noDos, sum(prixRep)
+    FROM Lesventes natural join P1_LesRepresentations natural Join LesTickets
+        group by noDos;
 
 
 
