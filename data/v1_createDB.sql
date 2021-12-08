@@ -30,7 +30,7 @@ create table LesZones (
     constraint PK_ZN primary key (noZone),
     constraint CK_ZN check (noZone > 0),
     constraint FK_CT foreign key (catZone) references  LesCategories(catZone)
-    );
+);
 
 create table LesReductions (
     notype integer not null ,

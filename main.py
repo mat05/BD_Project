@@ -225,13 +225,19 @@ class AppWindow(QMainWindow):
         self.fct_rep_2_dialog.show()
         self.changedValue.connect(self.fct_rep_2_dialog.refreshResult)
 
-    def open_fct_gerer_Rep_2(self):
+    def open_fct_gerer_Rep_3(self):
         if self.fct_gerer_rep_3_dialog is not None:
             self.fct_gerer_rep_3_dialog.close()
         self.fct_gerer_rep_3_dialog = AppFctGererRep3(self.data)
         self.fct_gerer_rep_3_dialog.show()
         self.changedValue.connect(self.fct_gerer_rep_3_dialog.refreshResult)
 
+    def open_fct_gerer_Res_3(self):
+        if self.fct_gerer_rep_3_dialog is not None:
+            self.fct_gerer_rep_3_dialog.close()
+        self.fct_gerer_rep_3_dialog = AppFctGererRep3(self.data)
+        self.fct_gerer_rep_3_dialog.show()
+        self.changedValue.connect(self.fct_gerer_rep_3_dialog.refreshResult)
     ####################################################################################################################
     # Fonctions liées aux évènements (signal/slot/event)
     ####################################################################################################################
@@ -264,7 +270,7 @@ class AppWindow(QMainWindow):
         event.accept()
 
 
-    # TODO 1.1 : fichier ui et python à modifier -> les catégories sont proposer dans un deroulant (coder en dur)
+    # (OK) TODO 1.1 : fichier ui et python à modifier -> les catégories sont proposer dans un deroulant (coder en dur)
     # TODO 1.2 : fichier ui  et python à modifier -> les catégories sont proposer dans un deroulant (a partir de la BD)
     # TODO 1.3 : Remplacer la table les ventes par une vue + modifier fichier ui
     # TODO 3.1 : Gérer les representation (ui OK) + fichier python associé (puis associer les boutons au foonction py)

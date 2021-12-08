@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="theatre" uuid="d539b0f4-f4d2-4614-a0a8-4bc819d58329">
+    <data-source source="LOCAL" name="@localhost" uuid="680004a6-63e6-4edf-9c6a-865c96af8fc3">
+      <driver-ref>oracle.19</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@localhost:1521:XE</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="theatre" uuid="6418988a-683c-4f96-8307-89fb6dc6a1ba">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\ABRO HOUSSEIN\Documents\BD_Project\data\theatre.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\matar\PycharmProjects\BD_Project\data\theatre.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
@@ -13,17 +21,12 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="identifier" uuid="6846069b-23d1-41a4-aeb4-11771088aad1">
+    <data-source source="LOCAL" name="V1_theatre" uuid="f43b4053-5858-44e9-bb95-441f8c9af6b1">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\ABRO HOUSSEIN\Documents\BD_Project\identifier.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/data/v0_createDB.sql</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
-        </library>
-      </libraries>
     </data-source>
   </component>
 </project>

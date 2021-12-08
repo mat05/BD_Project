@@ -40,13 +40,27 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_fct_comp_1"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_fct_comp_1">
-       <property name="text">
-        <string>Valider</string>
-       </property>
+      <widget class="QComboBox" name="comboBox_fct_comp_1">
+       <item>
+        <property name="text">
+         <string/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>orchestre</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>balcon</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>poulailler</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>
@@ -94,18 +108,18 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton_fct_comp_1</sender>
-   <signal>clicked()</signal>
+   <sender>comboBox_fct_comp_1</sender>
+   <signal>currentTextChanged(QString)</signal>
    <receiver>fct_comp_1</receiver>
    <slot>refreshResult()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>351</x>
-     <y>51</y>
+     <x>473</x>
+     <y>57</y>
     </hint>
     <hint type="destinationlabel">
-     <x>444</x>
-     <y>134</y>
+     <x>150</x>
+     <y>39</y>
     </hint>
    </hints>
   </connection>
