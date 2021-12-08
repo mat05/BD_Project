@@ -33,57 +33,63 @@ create table LesZones (
     );
 
 create table LesReductions (
-    notype varchar(50) not null ,
-    typeReduc integer not null ,
-    tauxReduc decimal(6,2),
+    notype integer not null ,
+    typeReduc varchar(50) not null ,
+    tauxReduc decimal(6,2) ,
     constraint PK_RD primary key (notype),
     constraint CK_TR check ( tauxReduc >= 0 ),
-    constraint CK_RD check (notype in  ('sans reduction','adherent','etudiant', 'scolaire' , 'militaire', 'seniors' ))
+    constraint CK_RD check (typeReduc in  ('sans reduction','adherent','etudiant', 'scolaire' , 'militaire', 'seniors' ))
 );
 
 create table LesTickets (
-    noTicket integer not null,
+    noTicket integer primary key autoincrement,
+    noDos integer not null,
     dateAchat date not null,
     dateRep date not null ,
     noPlace integer not null,
     noRang integer not null,
     noSpec integer not null,
-    typeReduc decimal (6,2),
-    constraint PK_TK primary key(noTicket),
+    noType integer not null,
     constraint CK_TK_ check (noTicket > 0 ),
-    constraint CK_TK_TR check (typeReduc >= 0 ),
-    constraint CK_TK_DT check (dateAchat < dateRep)
+    constraint CK_TK_TR check (noType >= 0 ),
+    constraint CK_TK_DT check (dateAchat < dateRep),
+    constraint FK_TK_NS foreign key  (noSpec) references  LesSpectacles(noSpec),
+    constraint FK_TK_PL foreign key  (noPlace,noRang) references  LesPlaces(noPlace,noRang),
+    constraint FK_TK_NT foreign key  (noType) references  LesReductions(notype)
 );
 
-create table LesPlaces (
+create table LesPlaces(
     noPlace integer,
     noRang  integer,
     noZone  integer not null,
     constraint PK_LP primary key (noPlace, noRang),
     constraint CK_PL_NP check (noPlace > 0),
-    constraint CK_PL_NR check (noRang > 0)
+    constraint CK_PL_NR check (noRang > 0),
+    constraint FK_nC foreign key (noZone) references LesZones(noZone)
     );
 
-create table Lesventes (
-    noDos integer,
-    nomSpec varchar(50) not null,
+create table LesVentes (
+    noDos integer primary key autoincrement ,
+    noSpec integer not null,
     dateRep date not null,
-    constraint PK_LP primary key (noDos)
+    constraint FK_V_NS foreign key  (noSpec) references  LesTickets(noSpec),
+    constraint FK_V_DR foreign key  (dateRep) references  LesRepresentations(dateRep)
     );
 
 create view P1_LesRepresentations
 AS
-    SELECT noSpec , dateRep, promoRep, (prixBaseSpec*(1 - promoRep)) as prixRep, count(*) as nbPlacesDispo
-    FROM LesRepresentations JOIN LesSpectacles on noSpec natural left outer join
-        (SELECT noSpec, noRang, noPlace, dateRep ,(prixBaseSpec * (1-promoRep)) as prixRep from LesRepresentations
-          CROSS JOIN LesPlaces join LesSpectacles ON noSpec NATURAL JOIN LesZones
-            where (noSpec , noRang , noPlace , dateRep) not in
-                  (select noSpec, noRang,noPlace , dateRep FROM LesTickets ))
-    GROUP BY nomSpec, dateRep, prixRep;
+    SELECT noSpec, dateRep, promoRep, nbPlacesDispos, prixRep
+FROM(SELECT noSpec, dateRep, count(*) as nbPlacesDispos
+     FROM LesRepresentations CROSS JOIN LesPlaces
+     WHERE (noSpec, dateRep, noPlace, noRang) not in (SELECT distinct noSpec, dateRep, noPlace, noRang
+     FROM LesTickets)
+     GROUP BY noSpec, dateRep) JOIN(
+SELECt noSpec, dateRep,promoRep, (prixBaseSpec*(1 - promoRep)) as prixRep
+FROM LesRepresentations JOIN LesSpectacles using (noSpec)) USING(noSpec, dateRep);
 
-CREATE VIEW LesReservations
+CREATE VIEW P1_LesReservations
 AS
-    SELECT noSpec, dateRep, count (noPlace,noRang) AS nbPlacesReserver
+    SELECT noSpec, dateRep, count (*) AS nbPlacesReserver
     FROM LesTickets
     GROUP BY noSpec, dateRep;
 
@@ -93,12 +99,26 @@ AS
     FROM P1_LesRepresentations join LesSpectacles using (noSPec)
     WHERE (noSpec, dateRep) not in ( SELECT DISTINCT noSpec,dateRep
                                      FROM LesTickets);
+
 CREATE VIEW P2_LesSpectacles
 AS
-    SELECT noSpec,nomSpec,dateRep, nbPlacesReserver
-    FROM LesReservations join LesSpectacles using (noSPec)
+    SELECT S.noSpec,nomSpec,dateRep, nbPlacesReserver
+    FROM P1_LesReservations join LesSpectacles S using (noSPec)
     GROUP BY noSpec, dateRep;
 
+CREATE VIEW P1_LesTickets
+AS
+    SELECT  noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType, prixRep * (1 - tauxReduc) as prixTicket
+    FROM  LesReductions JOIN (SELECT noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType, prixRep
+                                    FROM LesTickets JOIN P1_LesRepresentations USING (noSpec,dateRep))  USING (noType);
 
+CREATE VIEW P1_LesVentes
+AS
+    SELECT noSpec, dateRep, sum(prixTicket) as totalSpec
+    FROM P1_LesTickets
+    GROUP BY (noSpec, dateRep);
+
+select * from P1_LesVentes;
 
 -- TODO 3.3 : Ajouter les éléments nécessaires pour créer le trigger (attention, syntaxe SQLite différent qu'Oracle)
+-- TODO 3.3.1 : trigger des qu'on insert un ticket on insert sont numero d'achat et sa date dachat dans la table les ventes

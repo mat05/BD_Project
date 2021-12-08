@@ -42,8 +42,26 @@ class AppTablesDataV1(QDialog):
         # TODO 1.4 : modifier pour afficher les nouveaux éléments (il faut aussi changer le fichier .ui correspondant)
         # TODO 1.5 : modifier pour afficher les nouveaux éléments (il faut aussi changer le fichier .ui correspondant)
         self.refreshTable(self.ui.label_representations, self.ui.tableRepresentations,
-                          "SELECT noSpec, nomSpec, dateRep, promoRep, prixBaseSpec, prixRep "
-                          "FROM LesRepresentations")
+                          "SELECT noSpec, dateRep, promoRep, prixRep, nbPlacesDispos "
+                          "FROM P1_LesRepresentations")
+        self.refreshTable(self.ui.label_ventes, self.ui.tableVentes,
+                          "SELECT noDos, noSpec, dateRep, totalSpec "
+                          "FROM P1_LesVentes")
         self.refreshTable(self.ui.label_places, self.ui.tablePlaces,
-                          "SELECT noPlace, noRang, noZone, catZone, tauxZone "
+                          "SELECT noPlace, noRang, noZone "
                           "FROM LesPlaces")
+        self.refreshTable(self.ui.label_tickets, self.ui.tableTickets,
+                          "SELECT noTicket, noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType "
+                          "FROM LesTickets")
+        self.refreshTable(self.ui.label_reductions, self.ui.tableReduction,
+                          "SELECT noType, typeReduc, tauxReduc "
+                          "FROM LesReductions")
+        self.refreshTable(self.ui.label_zones, self.ui.tableZones,
+                          "SELECT noZone, catZone "
+                          "FROM LesZones")
+        self.refreshTable(self.ui.label_categories, self.ui.tableCategories,
+                          "SELECT catZone, tauxZone "
+                          "FROM LesCategories")
+        self.refreshTable(self.ui.label_spectacles, self.ui.tableSpectacles,
+                          "SELECT noSpec, nomSpec, prixBaseSpec "
+                          "FROM LesSpectacles")

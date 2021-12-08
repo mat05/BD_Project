@@ -16,11 +16,13 @@ class AppFctRep2(QDialog):
         self.refreshResult()
 
     # Fonction de mise à jour de l'affichage
+
     @pyqtSlot()
     def refreshResult(self):
         display.refreshLabel(self.ui.label_fct_rep_2, "")
         try:
             cursor = self.data.cursor()
+            print("OK")
             result = cursor.execute("SELECT noSpec, nomSPec, dateRep, nbPlacesReserver FROM P2_LesSpectacles")
         except Exception as e:
             self.ui.table_fct_rep_2.setRowCount(0)

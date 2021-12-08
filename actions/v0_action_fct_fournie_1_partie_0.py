@@ -18,7 +18,6 @@ class AppFctFournie1Partie0(QDialog):
     # Fonction de mise à jour de l'affichage
     @pyqtSlot()
     def refreshResult(self):
-
         display.refreshLabel(self.ui.label_fct_fournie_1, "")
         try:
             cursor = self.data.cursor()
