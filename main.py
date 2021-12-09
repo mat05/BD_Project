@@ -113,7 +113,6 @@ class AppWindow(QMainWindow):
         try:
             # On exécute les requêtes du fichier de création
             db.updateDBfile(self.data, "data/v1_createDB.sql")
-
         except Exception as e:
              # En cas d'erreur, on affiche un message
             display.refreshLabel(self.ui.label_2,
@@ -131,8 +130,8 @@ class AppWindow(QMainWindow):
 
         try:
             # On exécute les requêtes du fichier d'insertion
+            db.upTriggerDBfile(self.data, 'data/triggers.sql')
             db.updateDBfile(self.data, "data/v1_insertDB.sql")
-
         except Exception as e:
             # En cas d'erreur, on affiche un message
             display.refreshLabel(self.ui.label_2, "L'erreur suivante s'est produite lors de l'insertion des données V1 : "+repr(e)+".")
