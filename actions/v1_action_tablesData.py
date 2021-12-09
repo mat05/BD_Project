@@ -45,7 +45,7 @@ class AppTablesDataV1(QDialog):
                           "SELECT noSpec, dateRep, promoRep, prixRep, nbPlacesDispos "
                           "FROM P1_LesRepresentations")
         self.refreshTable(self.ui.label_ventes, self.ui.tableVentes,
-                          "SELECT noDos, noSpec, dateRep, totalSpec "
+                          "SELECT noDos, noSpec, dateRep, totalDos "
                           "FROM P1_LesVentes")
         self.refreshTable(self.ui.label_places, self.ui.tablePlaces,
                           "SELECT noPlace, noRang, noZone "

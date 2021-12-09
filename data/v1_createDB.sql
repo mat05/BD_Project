@@ -69,7 +69,7 @@ create table LesPlaces(
     );
 
 create table LesVentes (
-    noDos integer primary key autoincrement ,
+    noDos integer primary key ,
     noSpec integer not null,
     dateRep date not null,
     constraint FK_V_NS foreign key  (noSpec) references  LesTickets(noSpec),
@@ -108,17 +108,28 @@ AS
 
 CREATE VIEW P1_LesTickets
 AS
-    SELECT  noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType, prixRep * (1 - tauxReduc) as prixTicket
-    FROM  LesReductions JOIN (SELECT noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType, prixRep
-                                    FROM LesTickets JOIN P1_LesRepresentations USING (noSpec,dateRep))  USING (noType);
+    SELECT noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType,  (prixTicketRed * tauxZone) as prixTicket
+    FROM
+        (SELECT  noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType, prixRep * (1 - tauxReduc) as prixTicketRed
+        FROM  LesReductions JOIN (SELECT noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType, prixRep
+                                        FROM LesTickets
+                                        JOIN P1_LesRepresentations
+                                        USING (noSpec,dateRep))
+        USING (noType))
+    JOIN
+       ( SELECT noPlace, noRang, tauxZone
+        FROM LesPlaces JOIN (SELECT noZone, tauxZone
+                             FROM LesZones
+                             JOIN LesCategories
+                             USING (catZone))
+        USING (noZone))
+    USING (noPlace, noRang);
 
 CREATE VIEW P1_LesVentes
 AS
-    SELECT noSpec, dateRep, sum(prixTicket) as totalSpec
-    FROM P1_LesTickets
-    GROUP BY (noSpec, dateRep);
-
-select * from P1_LesVentes;
+    SELECT noDos, noSpec, dateRep, sum(prixTicket) as totalDos
+    FROM P1_LesTickets JOIN LesVentes using(noDos, dateRep, noSpec)
+    GROUP BY noDos, noSpec, dateRep;
 
 -- TODO 3.3 : Ajouter les éléments nécessaires pour créer le trigger (attention, syntaxe SQLite différent qu'Oracle)
 -- TODO 3.3.1 : trigger des qu'on insert un ticket on insert sont numero d'achat et sa date dachat dans la table les ventes
