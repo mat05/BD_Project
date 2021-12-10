@@ -13,6 +13,16 @@ class AppFctComp2Partie1(QDialog):
         super(QDialog, self).__init__()
         self.ui = uic.loadUi("gui/fct_comp_2.ui", self)
         self.data = data
+        self.init_frame()
+
+    def init_frame(self):
+        try:
+            result_0 = self.data.cursor().execute("SELECT distinct catZone FROM LesCategories")
+            display.refreshGenericCombo(self.ui.comboBox_fct_comp_2, result_0)
+        except Exception as e:
+            display.refreshLabel(self.ui.label_fct_comp_2, "Erreur d'initialisation: " + repr(e))
+        else:
+            display.refreshLabel(self.ui.label_fct_comp_2, "")
 
     # Fonction de mise à jour de l'affichage
     @pyqtSlot()
@@ -22,14 +32,13 @@ class AppFctComp2Partie1(QDialog):
 
         if not self.ui.comboBox_fct_comp_2.currentText():
             self.ui.table_fct_comp_2.setRowCount(0)
-            display.refreshLabel(self.ui.label_fct_comp_2, "Veuillez indiquer un nom de catégorie")
+            display.refreshLabel(self.ui.label_fct_comp_2, "Veuillez choirisr une catégorie")
         else:
             try:
                 cursor = self.data.cursor()
                 result = cursor.execute(
                     "SELECT noPlace, noRang, noZone FROM LesPlaces NATURAL JOIN LesZones NATURAL JOIN LesCategories WHERE catZone = ?",
                     [self.ui.comboBox_fct_comp_2.currentText()])
-
             except Exception as e:
                 self.ui.table_fct_comp_2.setRowCount(0)
                 display.refreshLabel(self.ui.label_fct_comp_2, "Impossible d'afficher les résultats : " + repr(e))

@@ -2,45 +2,87 @@
 import sqlite3
 from utils import display
 from PyQt5.QtWidgets import QDialog
-from PyQt5.QtCore import pyqtSlot
 from PyQt5 import uic
-from actions.V1_ajouter_rep import ajouter_rep
-from actions.V1_modifier_rep import modifier_rep
-from actions.V1_supprimer_rep import supprimer_rep
-# Classe permettant d'afficher la fonction à compléter 2
+
+# Classe permettant d'afficher la fonction fournie 2
 class AppFctGererRep3(QDialog):
 
-    fct_ajouter_rep_3_dialog = None
-    fct_modifier_rep_3_dialog = None
-    fct_supprimer_rep_3_dialog = None
-
-    # Constructeur
+    #Constructeur
     def __init__(self, data:sqlite3.Connection):
         super(QDialog, self).__init__()
-        print("HELLLO")
-        self.ui = uic.loadUi("gui/fct_gerer_3",self)
-        print("ok")
+        self.ui = uic.loadUi("gui/fct_gerer_3.ui", self)
         self.data = data
-        # self.open_ajouter_rep()
-        #self.open_modifier_rep()
-       # self.open_supprimer_rep()
+        self.init_frame()
+
     # Fonction de mise à jour de l'affichage
+    def init_frame(self):
+        try:
+            result_0 = self.data.cursor().execute("SELECT distinct nomSpec FROM LesSpectacles")
+            display.refreshGenericCombo(self.ui.comboBox_spec, result_0)
+        except Exception as e:
+            display.refreshLabel(self.ui.label_gerer, "Impossible d'afficher les résultats : " + repr(e))
+        else:
+            display.refreshLabel(self.ui.label_gerer, "")
 
-    @pyqtSlot()
-    def open_ajouter_rep(self):
-        if self.fct_ajouter_rep_3_dialog is not None:
-            self.fct_ajouter_rep_3_dialog.close()
-        self.fct_ajouter_rep_3_dialog = ajouter_rep(self.data)
-        self.fct_ajouter_rep_3_dialog.show()
+    def sel_spec(self):
+        display.refreshLabel(self.ui.label_gerer, "")
+        try:
+            result_1 = self.data.cursor().execute("SELECT distinct dateRep FROM LesRepresentations JOIN LesSpectacles USING (noSpec) WHERE nomSpec = ?",
+                                                  [self.ui.comboBox_spec.currentText()])
+            display.refreshGenericCombo(self.ui.comboBox_MD, result_1)
+            result_1 = self.data.cursor().execute("SELECT distinct dateRep FROM LesRepresentations JOIN LesSpectacles USING (noSpec) WHERE nomSpec = ?",
+                                                  [self.ui.comboBox_spec.currentText()])
+            display.refreshGenericCombo(self.ui.comboBox_SD, result_1)
+            result_1 = self.data.cursor().execute("SELECT distinct promoRep FROM LesRepresentations WHERE dateRep = ?",
+                [self.ui.comboBox_MD.currentText()])
+            display.refreshGenericCombo(self.ui.comboBox_MP, result_1)
+            result_1 = self.data.cursor().execute("SELECT distinct promoRep FROM LesRepresentations WHERE dateRep = ?",
+                [self.ui.comboBox_SD.currentText()])
+            display.refreshGenericCombo(self.ui.comboBox_SP, result_1)
+        except Exception as e:
+            display.refreshLabel(self.ui.label_gerer, "Impossible d'afficher les résultats : " + repr(e))
+        else:
+            display.refreshLabel(self.ui.label_gerer, "")
 
-    def open_modifier_rep(self):
-        if self.fct_modifier_rep_3_dialog is not None:
-            self.fct_modifier_rep_3_dialog.close()
-        self.fct_modifier_rep_3_dialog = modifier_rep(self.data)
-        self.fct_modifier_rep_3_dialog.show()
+    def refresh_promoRep_mod(self):
+        result_1 = self.data.cursor().execute("SELECT distinct promoRep FROM LesRepresentations WHERE dateRep = ?",
+                                              [self.ui.comboBox_MD.currentText()])
+        display.refreshGenericCombo(self.ui.comboBox_MP, result_1)
 
-    def open_surpprimer_rep(self):
-        if self.fct_supprimer_rep_3_dialog is not None:
-            self.fct_supprimer_rep_3_dialog.close()
-        self.fct_supprimer_rep_3_dialog = supprimer_rep(self.data)
-        self.fct_supprimer_rep_3_dialog.show()
+    def refresh_promoRep_supp(self):
+        result_1 = self.data.cursor().execute("SELECT distinct promoRep FROM LesRepresentations WHERE dateRep = ?",
+                                              [self.ui.comboBox_SD.currentText()])
+        display.refreshGenericCombo(self.ui.comboBox_SP, result_1)
+
+    def ajouter_rep(self):
+        try:
+            result_0 = self.data.cursor().execute("SELECT distinct noSpec FROM LesSpectacles WHERE nomSPec = ?",[self.ui.comboBox_spec.currentText()])
+            self.data.cursor().execute("INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (?,?,?)",[result_0.fetchone()[0],self.ui.comboBox_jour.currentText()+'/'+self.ui.comboBox_mois.currentText()+'/'+self.ui.comboBox_annee.currentText()+' '+self.ui.comboBox_heure.currentText()+':'+self.ui.comboBox_minute.currentText(),self.ui.promoRepI.text().strip()])
+        except Exception as e:
+            display.refreshLabel(self.ui.label_gerer, "Impossible d'afficher les résultats : " + repr(e))
+        else:
+            display.refreshLabel(self.ui.label_gerer, "Insertion Réussie")
+
+    def modifier_dateRep(self):
+        try:
+            self.data.cursor().execute("UPDATE LesRepresentations SET dateRep = ? WHERE promoRep = ? AND dateRep = ? AND nospec = (SELECT noSpec FROM LesSpectacles WHERE nomSpec = ?)",[self.ui.comboBox_jour_M.currentText()+'/'+self.ui.comboBox_mois_M.currentText()+'/'+self.ui.comboBox_annee_M.currentText()+' '+self.ui.comboBox_heure_M.currentText()+':'+self.ui.comboBox_minute_M.currentText(),self.ui.comboBox_MP.currentText(),self.ui.comboBox_MD.currentText(),self.ui.comboBox_spec.currentText()])
+        except Exception as e:
+            display.refreshLabel(self.ui.label_gerer, "Impossible d'afficher les résultats : " + repr(e))
+        else:
+            display.refreshLabel(self.ui.label_gerer, "Modification Réussie")
+
+    def modifier_promoRep(self):
+        try:
+            self.data.cursor().execute("UPDATE LesRepresentations SET promoRep = ? WHERE promoRep = ? AND dateRep = ? AND nospec = (SELECT noSpec FROM LesSpectacles WHERE nomSpec = ?)",[self.ui.promoRepM.text().strip(),self.ui.comboBox_MP.currentText(),self.ui.comboBox_MD.currentText(),self.ui.comboBox_spec.currentText()])
+        except Exception as e:
+            display.refreshLabel(self.ui.label_gerer, "Impossible d'afficher les résultats : " + repr(e))
+        else:
+            display.refreshLabel(self.ui.label_gerer, "Modification Réussie")
+
+    def supprimer_rep(self):
+        try:
+            self.data.cursor().execute("DELETE FROM LesRepresentations WHERE promoRep = ? AND dateRep = ? AND nospec = (SELECT noSpec FROM LesSpectacles WHERE nomSpec = ?)",[self.ui.comboBox_SP.currentText(),self.ui.comboBox_SD.currentText(),self.ui.comboBox_spec.currentText()])
+        except Exception as e:
+            display.refreshLabel(self.ui.label_gerer, "Impossible d'afficher les résultats : " + repr(e))
+        else:
+            display.refreshLabel(self.ui.label_gerer, "Suppression Réussie")

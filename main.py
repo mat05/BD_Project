@@ -14,6 +14,7 @@ from actions.v0_action_fct_comp_2_partie_1 import AppFctComp2Partie1
 from actions.V1_action_fct_rep_1 import AppFctRep1
 from actions.V1_action_fct_rep_2 import AppFctRep2
 from actions.V1_action_fct_gerer_rep_3 import AppFctGererRep3
+from actions.V1_action_fct_gerer_res_3 import AppFctGererRes3
 # Classe utilisée pour lancer la fenêtre principale de l'application et définir ses actions
 class AppWindow(QMainWindow):
 
@@ -32,6 +33,7 @@ class AppWindow(QMainWindow):
     fct_rep_1_dialog = None
     fct_rep_2_dialog = None
     fct_gerer_rep_3_dialog = None
+    fct_gerer_res_3_dialog = None
 
     # Constructeur
     def __init__(self):
@@ -229,14 +231,13 @@ class AppWindow(QMainWindow):
             self.fct_gerer_rep_3_dialog.close()
         self.fct_gerer_rep_3_dialog = AppFctGererRep3(self.data)
         self.fct_gerer_rep_3_dialog.show()
-        self.changedValue.connect(self.fct_gerer_rep_3_dialog.refreshResult)
 
     def open_fct_gerer_Res_3(self):
-        if self.fct_gerer_rep_3_dialog is not None:
-            self.fct_gerer_rep_3_dialog.close()
-        self.fct_gerer_rep_3_dialog = AppFctGererRep3(self.data)
-        self.fct_gerer_rep_3_dialog.show()
-        self.changedValue.connect(self.fct_gerer_rep_3_dialog.refreshResult)
+        if self.fct_gerer_res_3_dialog is not None:
+            self.fct_gerer_res_3_dialog.close()
+        self.fct_gerer_res_3_dialog = AppFctGererRes3(self.data)
+        self.fct_gerer_res_3_dialog.show()
+
     ####################################################################################################################
     # Fonctions liées aux évènements (signal/slot/event)
     ####################################################################################################################
@@ -261,6 +262,10 @@ class AppWindow(QMainWindow):
             self.fct_rep_1_dialog.close()
         if (self.fct_rep_2_dialog is not None):
             self.fct_rep_2_dialog.close()
+        if (self.fct_gerer_rep_3_dialog is not None):
+            self.fct_gerer_rep_3_dialog.close()
+        if (self.fct_gerer_res_3_dialog is not None):
+            self.fct_gerer_res_3_dialog.close()
 
         # On ferme proprement la base de données
         self.data.close()

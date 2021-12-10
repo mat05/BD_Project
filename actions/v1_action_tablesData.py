@@ -51,8 +51,8 @@ class AppTablesDataV1(QDialog):
                           "SELECT noPlace, noRang, noZone "
                           "FROM LesPlaces")
         self.refreshTable(self.ui.label_tickets, self.ui.tableTickets,
-                          "SELECT noTicket, noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType "
-                          "FROM LesTickets")
+                          "SELECT noTicket, noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType,prixTicket "
+                          "FROM P1_LesTickets")
         self.refreshTable(self.ui.label_reductions, self.ui.tableReduction,
                           "SELECT noType, typeReduc, tauxReduc "
                           "FROM LesReductions")

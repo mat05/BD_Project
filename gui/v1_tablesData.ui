@@ -339,6 +339,11 @@
            <string>noType</string>
           </property>
          </column>
+         <column>
+          <property name="text">
+           <string>prixTicket</string>
+          </property>
+         </column>
         </widget>
        </item>
        <item>
@@ -508,7 +513,7 @@
          </column>
          <column>
           <property name="text">
-           <string>totalDos</string>
+           <string>totalAchat</string>
           </property>
          </column>
         </widget>

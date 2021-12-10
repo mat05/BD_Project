@@ -38,9 +38,8 @@ create table LesReductions (
     tauxReduc decimal(6,2) ,
     constraint PK_RD primary key (notype),
     constraint CK_TR check ( tauxReduc >= 0 ),
-    constraint CK_RD check (typeReduc in  ('sans reduction','adherent','etudiant', 'scolaire' , 'militaire', 'seniors' ))
+    constraint CK_RD check (typeReduc in  ('sans reduction','adherent','etudiant', 'scolaire' , 'militaire', 'seniors'))
 );
-PRAGMA foreign_keys = true;
 create table LesTickets (
     noTicket integer primary key autoincrement,
     noDos integer not null,
@@ -73,8 +72,7 @@ create table LesVentes (
     noDos integer primary key ,
     noSpec integer not null,
     dateRep date not null,
-    constraint FK_V_NS foreign key  (noSpec) references  LesTickets(noSpec),
-    constraint FK_V_DR foreign key  (dateRep) references  LesRepresentations(dateRep)
+    constraint FK_V_DR foreign key  (noSpec,dateRep) references  LesRepresentations(noSpec,dateRep)
     );
 
 create view P1_LesRepresentations
@@ -109,7 +107,7 @@ AS
 
 CREATE VIEW P1_LesTickets
 AS
-    SELECT noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType,  (prixTicketRed * tauxZone) as prixTicket
+    SELECT noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType,  round((prixTicketRed * tauxZone),2 ) as prixTicket
     FROM
         (SELECT  noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType, prixRep * (1 - tauxReduc) as prixTicketRed
         FROM  LesReductions JOIN (SELECT noTicket,noDos, dateAchat, dateRep, noPlace, noRang, noSpec, noType, prixRep
@@ -127,9 +125,10 @@ AS
 
 CREATE VIEW P1_LesVentes
 AS
-    SELECT noDos, noSpec, dateRep, sum(prixTicket) as totalDos
+    SELECT noDos, noSpec, dateRep, round(sum(prixTicket),2) as totalDos
     FROM P1_LesTickets JOIN LesVentes using(noDos, dateRep, noSpec)
     GROUP BY noDos, noSpec, dateRep;
+
 
 -- TODO 3.3 : Ajouter les éléments nécessaires pour créer le trigger (attention, syntaxe SQLite différent qu'Oracle)
 -- TODO 3.3.1 : trigger des qu'on insert un ticket on insert sont numero d'achat et sa date dachat dans la table les ventes

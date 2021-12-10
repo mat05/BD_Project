@@ -111,7 +111,7 @@
    <sender>comboBox_fct_comp_1</sender>
    <signal>currentTextChanged(QString)</signal>
    <receiver>fct_comp_1</receiver>
-   <slot>refreshResult()</slot>
+   <slot>refreshResult1()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>473</x>
@@ -126,5 +126,6 @@
  </connections>
  <slots>
   <slot>refreshResult()</slot>
+  <slot>refreshResult1()</slot>
  </slots>
 </ui>

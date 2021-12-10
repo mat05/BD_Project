@@ -7,3 +7,5 @@ CREATE TRIGGER IF NOT EXISTS trigger_lesVentes
        INSERT INTO LesVentes(noDos, dateRep, noSpec) VALUES (new.noDos, new.dateRep, new.noSpec);
     END /
 
+
+

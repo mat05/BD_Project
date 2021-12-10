@@ -25,21 +25,3 @@ create table V0_LesPlaces (
     constraint ck_pl_tauxZone check (tauxZone >= 0),
     constraint ck_pl_cat check (catZone in ('orchestre', 'balcon', 'poulailler'))
 );
-
-create table LesSpectacles
-(   noSpec integer not null,
-    nomSpec varchar(50) not null,
-    prixBaseSpec decimal(6, 2) not null,
-    constraint PK_SP primary key (noSpec),
-    constraint CK_SP check (prixBaseSpec >= 0)
-);
-
--- prix rep est calculer dasn la vue
-create table LesRepresentations (
-    noSpec integer not null,
-    dateRep date not null,
-    promoRep decimal (4,2) not null,
-    constraint PK_REP primary key (noSpec, dateRep),
-    constraint CK_REP_PR check (promoRep >= 0 and promoRep <= 1),
-    constraint FK_NS foreign key  (noSpec) references  LesSpectacles(noSpec)
-);

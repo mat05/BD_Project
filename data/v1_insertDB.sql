@@ -57,7 +57,7 @@ INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (2,'Je parle to
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (3,'Les Eternels',25);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (4,'Gad au theatre',26.50);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (5,'Tout sur Grenoble',25.30);
-INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (6,'Le Divorce de Abro',25);
+INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (6,'Confession',25);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (7,'Maintenant ou jamel',25);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (8,'Oh My Gad',25);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (9,'Sans Tambour',25);
@@ -67,16 +67,15 @@ INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (12,'Coupable',
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (13,'Coupable2',24);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (14,'Yes Boss',39.5);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (15,'American dream',47.50);
-INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (16,'et puis merde!',23);
-INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (17,'la meilleur de nous',28);
-INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (18,'where is bryan',33);
+INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (16,'Et puis merde!',23);
+INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (17,'La meilleur de nous',28);
+INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (18,'Where is bryan',33);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (19,'Elysez nous',26);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (20,'Thats life',28);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (21,'Desperade Housemen',40);
-INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (22,'presque',29);
-INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (23,'le temps de vivre',34);
+INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (22,'Presque',29);
+INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (23,'Le temps de vivre',34);
 INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (24,'Hilarious',27);
-INSERT INTO LesSpectacles (noSpec, nomSpec, prixBaseSpec) VALUES (25,'Confession',25);
 
 
 INSERT INTO LesReductions (notype, typeReduc, tauxReduc) VALUES (1,'sans reduction',0.0);
@@ -177,7 +176,6 @@ INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (21,'11/04/202
 INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (21,'12/04/2021 18:00',0.3);
 INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (19,'18/07/2021 16:00',0.0);
 INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (20,'15/06/2021 18:30',0.0);
-INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (25,'13/04/2021 19:35',0.1);
 INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (24,'05/04/2022 14:40',0.2);
 INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (22,'09/04/2022 18:00',0.1);
 INSERT INTO LesRepresentations (noSpec, dateRep, promoRep) VALUES (9,'23/12/2012 14:00',0.2);
