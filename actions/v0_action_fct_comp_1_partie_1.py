@@ -32,6 +32,7 @@ class AppFctComp1Partie1(QDialog):
                 self.ui.table_fct_comp_1.setRowCount(0)
                 display.refreshLabel(self.ui.label_fct_comp_1, "Impossible d'afficher les résultats : " + repr(e))
             else:
-                i = display.refreshGenericData(self.ui.table_fct_comp_1, result)
+                i = display.ref(self.ui.table_fct_comp_1, result)
                 if i == 0:
                     display.refreshLabel(self.ui.label_fct_comp_1, "Aucun résultat")
+

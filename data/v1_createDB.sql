@@ -40,7 +40,7 @@ create table LesReductions (
     constraint CK_TR check ( tauxReduc >= 0 ),
     constraint CK_RD check (typeReduc in  ('sans reduction','adherent','etudiant', 'scolaire' , 'militaire', 'seniors' ))
 );
-
+PRAGMA foreign_keys = true;
 create table LesTickets (
     noTicket integer primary key autoincrement,
     noDos integer not null,
@@ -55,7 +55,8 @@ create table LesTickets (
     constraint CK_TK_DT check (dateAchat < dateRep),
     constraint FK_TK_NS foreign key  (noSpec) references  LesSpectacles(noSpec),
     constraint FK_TK_PL foreign key  (noPlace,noRang) references  LesPlaces(noPlace,noRang),
-    constraint FK_TK_NT foreign key  (noType) references  LesReductions(notype)
+    constraint FK_TK_NT foreign key  (noType) references  LesReductions(notype),
+    constraint FK_TK_ND foreign key  (noSpec,dateRep) references LesRepresentations (noSpec, dateRep)
 );
 
 create table LesPlaces(
@@ -116,8 +117,7 @@ AS
                                         JOIN P1_LesRepresentations
                                         USING (noSpec,dateRep))
         USING (noType))
-    JOIN
-       ( SELECT noPlace, noRang, tauxZone
+        JOIN ( SELECT noPlace, noRang, tauxZone
         FROM LesPlaces JOIN (SELECT noZone, tauxZone
                              FROM LesZones
                              JOIN LesCategories

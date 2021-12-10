@@ -37,7 +37,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="comboBox_fct_comp_2">
        <item>
         <property name="text">
          <string/>
@@ -103,7 +103,24 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>comboBox_fct_comp_2</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>fct_comp_2</receiver>
+   <slot>refreshResult()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>446</x>
+     <y>53</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>refreshResult()</slot>
  </slots>
